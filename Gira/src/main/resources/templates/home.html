@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"/>
+<body>
+<div class="page-container">
+    <header>
+        <th:block th:include="~{fragments/nav}"/>
+    </header>
+    <main class="content-wrap">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Tasks</span></h1>
+        <hr class="hr-3 w-75 bg-white"/>
+        <form class="mx-auto w-75 " method="" action="/">
+
+            <div th:each="t: ${tasks}" class="card-group task-card">
+                <div class="card">
+
+                    <div class="card-title">
+                        <h5 class="card-title">Name</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small><th:block th:text="${t.getName()}"/></small>
+                    </div>
+                </div>
+                <div class="card">
+
+                    <div class="card-title">
+                        <h5 class="card-title">Assigned to</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small><th:block th:text="${t.getAssignedTo()}"/></small>
+                    </div>
+                </div>
+                <div class="card">
+
+                    <div class="card-title">
+                        <h5 class="card-title">Classification</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small th:classappend="${t.getClassification()}" class="classifications"><th:block th:text="${t.getClassification()}"/></small>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <h5 class="card-title">Due Date</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small><th:block th:text="${t.getDueDate()}"/></small>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">
+                        <h5 class="card-title">Progress</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small><th:block th:text="${t.getProgress()}"/></small>
+                    </div>
+                </div>
+
+                <a th:href="@{/task/progress/{id} (id= ${t.getId()})}" class="button prBtn">Progress</a>
+            </div>
+
+        </form>
+    </main>
+
+    <th:block th:include="~{/fragments/footer}"/>
+
+</div>
+</body>
+</html>

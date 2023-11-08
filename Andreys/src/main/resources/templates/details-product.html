@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"/>
+<body>
+        <header xmlns:h="http://xmlns.jcp.org/jsf/html">
+            <th:block th:include="~{fragments/nav}"/>
+        </header>
+    <main>
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Details</span></h1>
+        <hr class="my-3"/>
+        <div class="container-fluid bg-blur w-50">
+            <div class="row justify-content-center">
+                <form th:action="@{${'/products/delete/' + item.getName()}}"
+                      th:method="GET"
+                        class="w-50 justify-content-center">
+                    <div class="label mt-2">
+                        <h2 class="text-white text-center"><th:block th:text="${item.getName()}"/></h2>
+                    </div>
+                    <div class="label mt-4">
+                        <img library="img"
+                             th:src="@{${'/img/'+ item.getGender() + '-' + item.getCategory() + '.jpg'}}" class="img-thumbnail" width="200" height="200"/>
+                        <h3 class="text-white text-center"><th:block th:text="${item.getDescription()}"/></h3>
+                    </div>
+                    <div class="label mt-4">
+                        <h3 class="text-white text-center mb-3"><th:block th:text="${item.getPrice()}"/></h3>
+                    </div>
+                    <div class="button-holder d-flex justify-content-center">
+                        <button type="submit" class="btn btn-danger text-white mb-3">Delete Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+        <th:block th:include="~{fragments/footer}"/>
+</body>
+</html>

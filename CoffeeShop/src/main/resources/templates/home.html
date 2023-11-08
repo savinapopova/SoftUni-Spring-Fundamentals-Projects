@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{/fragments/head}"/>
+<body class="bg-secondary">
+<header>
+    <th:block th:include="~{/fragments/nav}"/>
+</header>
+<main role="main" class="bg-secondary">
+
+    <div class="jumbotron text-center">
+        <div class="container text-light text-center">
+            <h1 class="display-3"><strong class="bg-blur rounded">All active</strong></h1>
+            <h1 class="display-3"><strong class="bg-blur rounded">Orders</strong></h1>
+        </div>
+        <div class="row mt-3 mb-3 ">
+            <div class="col-5 bg-blur rounded m-auto pb-3">
+                <h3 class="mySticky bg-gray text-light rounded">Тime to prepare all orders(in min): <th:block th:text="${totalTime}"/></h3>
+                <div th:each="cake: ${cakeList}" class="mt-3 rounded badge-info p-3">
+                    <img class="mr-2" src="/images/cake.png" alt="Cake"
+                         width="50px" height="50px">
+                    <span th:text="${cake.getName()}" class="p-3">Name</span>
+                    <span th:text="${cake.getPrice()}" class="p-3">Price</span>
+                    <a class="ml-3 p-3 text-warning" th:href="@{order/ready/{id}(id=*{cake.getId()})}">Ready</a>
+                </div>
+                <div th:each="drink: ${drinkList}" class="mt-3 rounded badge-info p-3">
+                    <img class="mr-2" src="/images/drink.png" alt="Drink"
+                         width="50px" height="50px">
+                    <span th:text="${drink.getName()}" class="p-3">Name</span>
+                    <span th:text="${drink.getPrice()}" class="p-3">Price</span>
+                    <a class="ml-3 p-3 text-warning" th:href="@{order/ready/{id}(id=*{drink.getId()})}">Ready</a>
+                </div>
+                <div th:each="other: ${otherList}" class="mt-3 rounded badge-info p-3">
+                    <img class="mr-2" src="/images/other.png" alt="Other"
+                         width="50px" height="50px">
+                    <span th:text="${other.getName()}" class="p-3">Name</span>
+                    <span th:text="${other.getPrice()}" class="p-3">Price</span>
+                    <a class="ml-3 p-3 text-warning" th:href="@{order/ready/{id}(id=*{other.getId()})}">Ready</a>
+                </div>
+                <div th:each="coffee: ${coffeeList}" class="mt-3 rounded badge-info p-3">
+                    <img class="mr-2" src="/images/coffee.png" alt="Coffee"
+                         width="50px" height="50px">
+                    <span th:text="${coffee.getName()}" class="p-3">Name</span>
+                    <span th:text="${coffee.getPrice()}" class="p-3">Price</span>
+                    <a class="ml-3 p-3 text-warning" th:href="@{order/ready/{id}(id=*{coffee.getId()})}">Ready</a>
+                </div>
+            </div>
+            <div class="col-5 bg-blur rounded m-auto pb-3">
+                <h3 class="mySticky bg-gray text-light rounded">Orders by employee</h3>
+                <div th:each="u: ${users}" class="mt-3 rounded badge-info p-3">
+                    <img class="mr-2" src="/images/employee.png" alt="Employee"
+                         width="50px" height="50px">
+                    <span class="p-3">Employee - <th:block th:text="${u.getUsername()}"/></span>
+                    <span class="p-3">Number of orders: <th:block th:text="${u.getOrdersCount()}"/></span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{/fragments/footer}"/>
+</body>
+</html>

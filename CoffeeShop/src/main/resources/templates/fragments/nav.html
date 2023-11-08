@@ -1,0 +1,32 @@
+<nav th:if="${@loggedUser.getId() == 0}" class="navbar navbar-expand-md navbar-dark fixed-top bg-info rounded">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{register}">Register</a>
+            </li>
+        </ul>
+        <img width="50px" src="/images/coffee.png" alt="Coffee image">
+    </div>
+</nav>
+<nav th:if="${@loggedUser.getId() > 0}" class="navbar navbar-expand-md navbar-dark fixed-top bg-info rounded">
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/home}">Home</a>
+            </li>
+           <li class="nav-item">
+                <a class="nav-link" th:href="@{/order/add}">Add Order</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </li>
+        </ul>
+        <img width="50px" src="/images/coffee.png" alt="Coffee image">
+    </div>
+</nav>

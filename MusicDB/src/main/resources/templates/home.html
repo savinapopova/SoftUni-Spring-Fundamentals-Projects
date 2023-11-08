@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<th:block th:include="~{fragments/head}"/>
+<body>
+<header>
+    <th:block th:include="~{fragments/nav}"/>
+</header>
+<main class="p-5 align-content-center bg-blur my-main">
+    <h2 class="text-light border-bottom">Total sold copies
+        of all albums: <th:block th:text="${totalCopies}"/></h2>
+    <div  class="row">
+        <div th:each="a: ${albums}" class="col-md-3">
+            <div  class="card mb-4 box-shadow">
+                <img th:src="${a.getImageUrl()}" alt="Thumbnail [100%x225]"
+                     data-holder-rendered="true"
+                     style="height: 225px; width: 100%; display: block;">
+                <div class="card-body">
+                    <div class="text-center">
+                        <p class="card-text border-bottom ">Name: <th:block th:text="${a.getName()}"/></p>
+                        <p class="card-text border-bottom ">Artist: <th:block th:text="${a.getArtist()}"/></p>
+                        <p class="card-text border-bottom ">Genre: <th:block th:text="${a.getGenre()}"/></p>
+                        <p class="card-text border-bottom ">Price: <th:block th:text="${a.getPrice()}"/></p>
+                        <p class="card-text border-bottom">Release Date: <th:block th:text="${a.getReleaseDate()}"/></p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a th:href="@{/album/delete/{id}(id=*{a.getId()})}" type="button" class="btn btn-sm btn-outline-secondary">Delete</a>
+                        </div>
+                        <small class="text-muted"><th:block th:text="${a.getCopies()}"/> copies</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:include="~{/fragments/footer}"/>
+</body>
+</html>

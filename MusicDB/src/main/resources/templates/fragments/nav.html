@@ -1,0 +1,30 @@
+<nav th:if="${@loggedUser.getId() == 0}" class="navbar navbar-expand-lg bg-nav rounded">
+    <a class="nav-link" th:href="@{/}">
+        <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">
+    </a>
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+        <ul class="navbar-nav row">
+            <li class="nav-item col-md-4">
+                <a class="nav-link text-white active h5" th:href="@{/login}">Login</a>
+            </li>
+            <li class="nav-item col-md-4">
+                <a class="nav-link text-white active h5" th:href="@{/register}">Register</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<nav th:if="${@loggedUser.getId() > 0}" class="navbar navbar-expand-lg bg-nav rounded">
+    <a class="nav-link" th:href="@{/home}">
+        <img src="/img/headphones.png" width="40px" alt="HeadPhones picture">
+    </a>
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+        <ul class="navbar-nav row">
+            <li class="nav-item col-md-4">
+                <a class="nav-link text-white active h5" th:href="@{/album/add}">Add Album</a>
+            </li>
+            <li class="nav-item col-md-4">
+                <a class="nav-link text-white active h5" th:href="@{/logout}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
